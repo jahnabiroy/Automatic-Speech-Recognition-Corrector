@@ -2,7 +2,21 @@ from itertools import product
 import json
 from hashing import hash_word
 
+# import re
+# def replace_after(text):
+#     # Define patterns and replacements
+#     replacements = {
+#         r"'Z": "'S",  # Replace 'Z' with 'S' when preceded by a comma
+#         r"'D": "'ED", # Replace 'D' with 'ED' when preceded by a comma
+#         # Add more rules here if needed
+#     }
 
+#     # Apply each replacement
+#     for pattern, replacement in replacements.items():
+#         text = re.sub(pattern, replacement, text)
+
+#     return text
+#
 def reverse_phoneme_table(phoneme_table):
     reverse_table = {}
     for original, subs in phoneme_table.items():
@@ -70,10 +84,16 @@ def local_beam_search(asr_word, phoneme_table, all_words, beam_width):
     top_k_words = [word for word, freq in frequency_list[:beam_width]]
     return top_k_words
 
-# all_words = json.load(open('words.json'))
-# phoneme_table = json.load(open('data/phoneme_table.json'))
-# asr_word = "ASSHUMED"
-# beam_width = 50
-# print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
-# asr_word = "SHAID"
-# print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+all_words = json.load(open('words.json'))
+phoneme_table = json.load(open('data/phoneme_table.json'))
+asr_word = "TARRANGOWER"
+beam_width = 50
+print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+asr_word = "THARCZ"
+print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+asr_word = "FELDERSON"
+print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+asr_word = "WORLD'Z"
+print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+sentence = "THERE WAS GOOD REASON TO STOP AND THINK EVEN FOR THE WORLD'Z MOST EMOTIONLESS MAN"
+print(replace_after(sentence))

@@ -1,6 +1,19 @@
 import json
 from helper import local_beam_search
+import re
+def replace_after(text):
+    # Define patterns and replacements
+    replacements = {
+        r"'Z": "'S",  # Replace 'Z' with 'S' when preceded by a comma
+        r"'D": "'ED", # Replace 'D' with 'ED' when preceded by a comma
+        # Add more rules here if needed
+    }
 
+    # Apply each replacement
+    for pattern, replacement in replacements.items():
+        text = re.sub(pattern, replacement, text)
+
+    return text
 
 class Agent(object):
     def __init__(
@@ -33,6 +46,7 @@ class Agent(object):
         Your agent must update environment.best_state with the corrected text discovered so far.
         """
         self.best_state = environment.init_state
+        self.best_state = replace_after(self.best_state)
         current_cost = environment.compute_cost(self.best_state)
         words = self.best_state.split()
         print(self.best_state)
