@@ -56,19 +56,18 @@ class Agent(object):
         while f:
             f = False
             for i in range(len(temp_lst)):
+                test = words.copy()
                 asr_word = temp_lst[i]
                 original_possibilities = possible_changes[i]
                 for possibility in original_possibilities:
                     # Temporarily replace the word and compute the new cost
-                    words[i] = possibility
-                    new_cost = compute_cost_lst(words)
+                    test[i] = possibility
+                    new_cost = compute_cost_lst(test)
                     # Update if the new cost is lower
                     if new_cost < current_cost:
                         f = True
                         current_cost = new_cost
+                        words = test.copy()
                         self.best_state = " ".join(words)
-                    else:
-                        # Revert if no improvement
-                        words[i] = asr_word
 
         print(self.best_state)
