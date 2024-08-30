@@ -49,8 +49,7 @@ class Agent(object):
                     temp_lst[i],
                     self.phoneme_table,
                     self.word_file,
-                    self.beam_width,
-                    self.max_iterations,)
+                    self.beam_width,)
 
         f = True
         while f:
