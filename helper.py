@@ -26,18 +26,25 @@ def my_search(asr_word, phoneme_table):
         reverse_table[k] = list(set(reverse_table[k]))
 
     keys = list(reverse_table.keys())
-
     lst = [[] for i in range(len(asr_word))]
+    lst[0]=[""]
     for i in range(len(asr_word)):
+        if(len(lst[0])>1) and "" in lst[0]:
+            lst[0].remove("")
         for k in keys:
+            if(len(lst[0])>1) and "" in lst[0]:
+                lst[0].remove("")
             if k == asr_word[i:i+len(k)]:
-                if(i==0):
-                    lst[i] = reverse_table[k]
+                if(i ==0):
+                    for add in reverse_table[k]:
+                        lst[i + len(k) - 1].append(add)
+
                 else:
                     for pre in lst[i-1]:
                         for add in reverse_table[k]:
-                            lst[i].append(pre + add)
-
+                            lst[i + len(k) - 1].append(pre + add)
+    # for i in lst:
+    #     print(i)
     return list(set(lst[-1]))
 
 
@@ -65,6 +72,8 @@ def local_beam_search(asr_word, phoneme_table, all_words, beam_width):
 
 # all_words = json.load(open('words.json'))
 # phoneme_table = json.load(open('data/phoneme_table.json'))
-# asr_word = "WHEDER"
+# asr_word = "ASSHUMED"
 # beam_width = 50
+# print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+# asr_word = "SHAID"
 # print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
