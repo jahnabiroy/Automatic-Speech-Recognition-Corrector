@@ -8,7 +8,7 @@ class Agent(object):
         phoneme_table,
         vocabulary,
         word_file="words.json",
-        beam_width=5,
+        beam_width=25,
         max_iterations=15,
         window_size=3,
     ) -> None:
@@ -43,7 +43,7 @@ class Agent(object):
             return environment.compute_cost(sentence)
 
         temp_lst = words.copy()
-        possible_changes = []*len(temp_lst)
+        possible_changes = [[] for _ in range(len(temp_lst))]
         for i in range(len(temp_lst)):
             possible_changes[i] = local_beam_search(
                     temp_lst[i],
