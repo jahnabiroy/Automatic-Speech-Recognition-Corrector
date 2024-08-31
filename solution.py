@@ -108,7 +108,7 @@ class Agent(object):
         for trail in leading_trailing_words:
             test = words + [trail]
             new_cost = compute_cost_lst(test)
-            if new_cost < current_cost:
+            if new_cost < current_cost - epsilon:
                 current_cost = new_cost
                 self.best_state = " ".join(test)
 
