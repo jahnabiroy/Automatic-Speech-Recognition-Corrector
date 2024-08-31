@@ -2,11 +2,13 @@ import json
 from hashing import hash_word
 from helper import local_beam_search
 import re
+
+
 def replace_after(text):
     # Define patterns and replacements
     replacements = {
         r"'Z": "'S",  # Replace 'Z' with 'S' when preceded by a comma
-        r"'D": "'ED", # Replace 'D' with 'ED' when preceded by a comma
+        r"'D": "ED",  # Replace 'D' with 'ED' when preceded by a comma
         # Add more rules here if needed
     }
 
@@ -16,6 +18,7 @@ def replace_after(text):
 
     return text
 
+
 class Agent(object):
     def __init__(
         self,
@@ -24,8 +27,7 @@ class Agent(object):
         word_file="words.json",
         beam_width=25,
         max_iterations=15,
-        window_size=3,
-        epsilon = 0.001
+        epsilon=1e-5,
     ) -> None:
         """
         Agent initialization with local beam search parameters and sliding window.
@@ -35,7 +37,6 @@ class Agent(object):
         self.best_state = None
         self.beam_width = beam_width
         self.max_iterations = max_iterations
-        self.window_size = window_size
         self.epsilon = epsilon
         with open(word_file, "r") as f:
             self.word_file = json.load(f)
@@ -61,10 +62,11 @@ class Agent(object):
         possible_changes = [[] for _ in range(len(temp_lst))]
         for i in range(len(temp_lst)):
             possible_changes[i] = local_beam_search(
-                    temp_lst[i],
-                    self.phoneme_table,
-                    self.word_file,
-                    self.beam_width,)
+                temp_lst[i],
+                self.phoneme_table,
+                self.word_file,
+                self.beam_width,
+            )
 
         f = True
         while f:
@@ -86,6 +88,7 @@ class Agent(object):
 
         leading_trailing_words = self.vocabulary
         word_file = self.word_file
+
         def func(x):
             hash_value = hash_word(x)
             if hash_value not in word_file:
@@ -96,7 +99,10 @@ class Agent(object):
                     return j[1]
             return 0
 
-        leading_trailing_words = sorted(leading_trailing_words, key=lambda x: func(x),reverse=True)
+        leading_trailing_words = sorted(
+            leading_trailing_words, key=lambda x: func(x), reverse=True
+        )
+
         epsilon = self.epsilon
         for lead in leading_trailing_words:
             test = [lead] + words
