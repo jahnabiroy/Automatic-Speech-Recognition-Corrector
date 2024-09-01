@@ -94,10 +94,10 @@ def local_beam_search(asr_word, phoneme_table, all_words, beam_width):
 # print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
 
 
-import re
-sentence = "example's state here"
-words = re.split(r"( |')", sentence)
-words = [word for word in words if word and word != " "]
+# import re
+# sentence = "example's state here"
+# words = re.split(r"( |')", sentence)
+# words = [word for word in words if word and word != " "]
 
 print(words)
 def custom_join(words):
