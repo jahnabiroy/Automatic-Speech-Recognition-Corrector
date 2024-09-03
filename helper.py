@@ -86,12 +86,12 @@ def local_beam_search(asr_word, phoneme_table, all_words, beam_width):
     top_k_words = [word for word, freq in frequency_list[:beam_width]]
     return top_k_words
 
-# all_words = json.load(open('words.json'))
-# phoneme_table = json.load(open('data/phoneme_table.json'))
-# phoneme_table["'"]=["'"]
-# asr_word = "THELE'S"
-# beam_width = 50
-# print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
+all_words = json.load(open('words.json'))
+phoneme_table = json.load(open('data/phoneme_table.json'))
+phoneme_table["'"]=["'"]
+asr_word = "THARC"
+beam_width = 50
+print(local_beam_search(asr_word, phoneme_table, all_words, beam_width))
 
 
 # import re
@@ -99,24 +99,24 @@ def local_beam_search(asr_word, phoneme_table, all_words, beam_width):
 # words = re.split(r"( |')", sentence)
 # words = [word for word in words if word and word != " "]
 
-print(words)
-def custom_join(words):
-    # Initialize an empty string to store the result
-    result = ""
+# print(words)
+# def custom_join(words):
+#     # Initialize an empty string to store the result
+#     result = ""
 
-    for i, word in enumerate(words):
-        # If the word is an apostrophe, do not add a space before it
-        if word == "'":
-            result += "'"
-        else:
-            # If the previous word is an apostrophe, don't add a space
-            if i > 0 and words[i - 1] == "'":
-                result += word
-            else:
-                # Add a space before the word if it's not the first word
-                if i > 0:
-                    result += " "
-                result += word
+#     for i, word in enumerate(words):
+#         # If the word is an apostrophe, do not add a space before it
+#         if word == "'":
+#             result += "'"
+#         else:
+#             # If the previous word is an apostrophe, don't add a space
+#             if i > 0 and words[i - 1] == "'":
+#                 result += word
+#             else:
+#                 # Add a space before the word if it's not the first word
+#                 if i > 0:
+#                     result += " "
+#                 result += word
 
-    return result
-print(custom_join(words))
+#     return result
+# print(custom_join(words))
