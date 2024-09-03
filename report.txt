@@ -1,6 +1,6 @@
 COL333 Assignment 1: Automatic Speech Recognition Corrector
 
-Authors: Jahnabi Roy (2022CS11094), Abhinav Rajesh Shripad (2022CS11596)
+Authors: Abhinav Rajesh Shripad (2022CS11596), Jahnabi Roy (2022CS11094)
 
 ---
 
