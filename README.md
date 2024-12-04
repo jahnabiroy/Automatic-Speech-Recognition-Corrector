@@ -58,3 +58,8 @@ The ASR corrector is designed around the `Agent` class, which is initialized wit
 ## Conclusion
 
 The ASR corrector designed in this assignment effectively combines beam search, phoneme mapping, dynamic programming, and hashing techniques to iteratively refine ASR outputs. By focusing on minimizing correction costs and optimizing the search space, this approach is adaptable for use with various cost functions and models. Reversing the phoneme table and leveraging a comprehensive word-frequency dictionary further enhances the system's ability to identify the best possible corrections, thereby improving the overall accuracy of ASR systems.
+
+## Contributors 
+
+- [Jahnabi Roy](https://github.com/jahnabiroy)
+- [Abhinav Rajesh Shripad](https://github.com/33Arsenic75)
